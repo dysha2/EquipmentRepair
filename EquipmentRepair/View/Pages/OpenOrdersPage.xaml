@@ -1,0 +1,41 @@
+﻿<Page x:Class="EquipmentRepair.View.Pages.OpenOrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EquipmentRepair.View.Pages"
+      mc:Ignorable="d" x:Name="ThisPage"
+      d:DesignHeight="295" d:DesignWidth="590"
+      Title="OpenOrdersPage" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
+
+    <Grid>
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding Orders}"  Foreground="White">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock>
+                                <Run Text="Дата заявки:"/>
+                                <Run Text="{Binding Date}"/>
+                            </TextBlock>
+                            <TextBlock>
+                            <Run Text="Адрес:"/>
+                            <Run Text="{Binding SalePoint.Address}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Приоритет заявки:"/>
+                                <Run Text="{Binding OrderPriority.Name}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Описание:"/>
+                                <Run Text="{Binding Description, TargetNullValue=Нету}"/>
+                            </TextBlock>
+                            <Button Content="Взять заявку" Click="GetOrder"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+       
+    </Grid>
+</Page>

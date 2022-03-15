@@ -1,0 +1,39 @@
+﻿<Window x:Class="EquipmentRepair.View.SpecialistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EquipmentRepair.View"
+        xmlns:Page="clr-namespace:EquipmentRepair.View.Pages"
+        mc:Ignorable="d" Background="{DynamicResource MaterialDesignDarkBackground}"
+        Title="SpecialistWindow" Height="450" Width="800" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock FontWeight="Bold" FontSize="30" Foreground="White">
+                <Run Text="Управление заявками -"/>
+                <Run Text="{Binding TitleNow}"/>
+            </TextBlock>
+            <Label Content="{Binding SpecialistInSystem.FullName}" FontSize="20"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPaperButton}">
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Margin" Value="5,10,5,10"/>
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="Активные заявки" Click="GoToPage" DataContext="{Binding OpenOrdersP}" Cursor="Hand"/>
+            <Button Content="История заявок" Click="GoToPage" DataContext="{Binding OrdersWorkP}"/>
+        </StackPanel>
+        <Frame x:Name="MainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

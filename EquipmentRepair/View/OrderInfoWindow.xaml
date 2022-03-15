@@ -1,0 +1,62 @@
+﻿<Window x:Class="EquipmentRepair.View.OrderInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EquipmentRepair.View"
+        mc:Ignorable="d" Background="{DynamicResource MaterialDesignDarkBackground}"
+        Title="OrderInfoWindow" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock" x:Key="Indents">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Margin" Value="0,5,0,5"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="IsVisible" BasedOn="{StaticResource Indents}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding OrderStatusId}" Value="2">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource Indents}"/>
+
+        </StackPanel.Resources>
+        <Label Content="Информация о заявкe" FontWeight="Bold" FontSize="30" DockPanel.Dock="Top"/>
+        <TextBlock>
+            <Run Text="Дата заявки"/>
+            <LineBreak/>
+            <Run Text="{Binding Date}"/>
+        </TextBlock>
+        <TextBlock>
+            <Run Text="Адрес торговой точки"/>
+            <LineBreak/>
+            <Run Text="{Binding SalePoint.Address}"/>
+        </TextBlock>
+        <TextBlock>
+            <Run Text="Дата начала выполнения"/>
+            <LineBreak/>
+            <Run Text="{Binding OrderInWork.DateStart}"/>
+        </TextBlock>
+        <TextBlock Style="{StaticResource IsVisible}">
+            <Run Text="Дата окончания"/>
+            <LineBreak/>
+            <Run Text="{Binding OrderInWork.DateEnd, TargetNullValue=В процессе}"/>
+        </TextBlock>
+        <TextBlock>
+            <Run Text="Исполнитель"/>
+            <LineBreak/>
+            <Run Text="{Binding OrderInWork.Specialist.FullName}"/>
+        </TextBlock>
+        <TextBlock>
+            <Run Text="Описание неисправности"/>
+            <LineBreak/>
+            <Run Text="{Binding Description,TargetNullValue=Отсутствует}"/>
+        </TextBlock>
+        <TextBlock Style="{StaticResource IsVisible}">
+            <Run Text="Комментарий специалистa"/>
+            <LineBreak/>
+            <Run Text="{Binding OrderInWork.Comment,TargetNullValue=Отсутствует}"/>
+        </TextBlock>
+    </StackPanel>
+</Window>
